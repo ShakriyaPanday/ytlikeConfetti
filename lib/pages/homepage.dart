@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:confetti/confetti.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +50,15 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            ConfettiWidget(confettiController: _contoller)
+            ConfettiWidget(
+              confettiController: _contoller,
+              blastDirection: -pi / 2,
+              gravity: 1,
+              emissionFrequency: 0,
+              canvas: Size(500, 500),
+              numberOfParticles: 50,
+              maxBlastForce: 50,
+            )
           ],
         ),
       )),
