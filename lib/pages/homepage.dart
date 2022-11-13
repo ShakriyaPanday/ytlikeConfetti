@@ -12,13 +12,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _contoller = ConfettiController();
+  final _contollerdown = ConfettiController();
+  final _contollerup = ConfettiController();
+  final _contollerleft = ConfettiController();
+  final _contollerright = ConfettiController();
   IconData likeIcon = CupertinoIcons.hand_thumbsup;
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _contoller.dispose();
+    _contollerdown.dispose();
+    _contollerup.dispose();
+    _contollerleft.dispose();
+    _contollerright.dispose();
   }
 
   Widget build(BuildContext context) {
@@ -37,9 +43,15 @@ class _HomePageState extends State<HomePage> {
                       : CupertinoIcons.hand_thumbsup;
                 });
                 if (likeIcon == CupertinoIcons.hand_thumbsup) {
-                  _contoller.stop();
+                  _contollerup.stop();
+                  _contollerdown.stop();
+                  _contollerleft.stop();
+                  _contollerright.stop();
                 } else {
-                  _contoller.play();
+                  _contollerup.play();
+                  _contollerdown.play();
+                  _contollerleft.play();
+                  _contollerright.play();
                 }
                 ;
               },
@@ -51,14 +63,37 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             ConfettiWidget(
-              confettiController: _contoller,
-              blastDirection: -pi / 2,
-              gravity: 1,
+              confettiController: _contollerdown,
+              blastDirection: pi / 2,
+              gravity: 0.01,
               emissionFrequency: 0,
-              canvas: Size(500, 500),
-              numberOfParticles: 50,
-              maxBlastForce: 50,
-            )
+              numberOfParticles: 100,
+              maxBlastForce: 10,
+            ),
+            ConfettiWidget(
+              confettiController: _contollerup,
+              blastDirection: -pi / 2,
+              gravity: 0.01,
+              emissionFrequency: 0,
+              numberOfParticles: 100,
+              maxBlastForce: 10,
+            ),
+            ConfettiWidget(
+              confettiController: _contollerleft,
+              blastDirection: pi,
+              gravity: 0.01,
+              emissionFrequency: 0,
+              numberOfParticles: 100,
+              maxBlastForce: 10,
+            ),
+            ConfettiWidget(
+              confettiController: _contollerright,
+              blastDirection: 0,
+              gravity: 0.01,
+              emissionFrequency: 0,
+              numberOfParticles: 100,
+              maxBlastForce: 10,
+            ),
           ],
         ),
       )),
